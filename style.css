@@ -1,6 +1,458 @@
-/* ================================
-   TABLE STYLING
-================================ */
+/* =====================================
+   GLOBAL STYLES
+===================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff8f3,
+            #fffdf9
+        );
+
+    color: #32152d;
+}
+
+
+/* =====================================
+   NAVIGATION
+===================================== */
+
+.nav {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 22px 8%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff0f5,
+            #fffaf2,
+            #f2eaff
+        );
+
+    border-bottom: 1px solid #ead1c9;
+
+    box-shadow:
+        0 3px 18px rgba(101, 40, 67, 0.08);
+}
+
+
+.brand {
+    color: #651b40;
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    text-decoration: none;
+}
+
+
+.nav-links {
+    display: flex;
+
+    gap: 30px;
+}
+
+
+.nav-links a {
+    color: #542c48;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    transition: 0.3s;
+}
+
+
+.nav-links a:hover {
+    color: #b02e60;
+
+    text-decoration: underline;
+}
+
+
+/* =====================================
+   HERO SECTION
+===================================== */
+
+.hero {
+    min-height: 560px;
+
+    padding: 90px 8%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255, 235, 241, 0.95),
+            rgba(255, 249, 238, 0.86),
+            rgba(232, 225, 255, 0.82)
+        ),
+        url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=2000&q=85");
+
+    background-size: cover;
+
+    background-position: center;
+
+    border-bottom: 1px solid #ead1c9;
+}
+
+
+.hero > p:first-child {
+    color: #a42d5b;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 4px;
+}
+
+
+.hero h1 {
+    max-width: 800px;
+
+    margin: 18px 0;
+
+    color: #641c43;
+
+    font-size: 65px;
+
+    line-height: 1.1;
+
+    font-weight: normal;
+}
+
+
+.hero p:not(:first-child) {
+    max-width: 580px;
+
+    color: #704d61;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+}
+
+
+/* =====================================
+   BUTTON
+===================================== */
+
+.button {
+    display: inline-block;
+
+    width: fit-content;
+
+    padding: 13px 24px;
+
+    margin-top: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8f1f4f,
+            #b73568
+        );
+
+    color: #ffffff;
+
+    border: none;
+
+    border-radius: 3px;
+
+    text-decoration: none;
+
+    font-family: Georgia, serif;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    box-shadow:
+        0 5px 15px rgba(143, 31, 79, 0.18);
+}
+
+
+.button:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #b73568,
+            #d65b86
+        );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(143, 31, 79, 0.28);
+}
+
+
+/* =====================================
+   SECTION
+===================================== */
+
+.section {
+    padding: 75px 8%;
+}
+
+
+.section-label {
+    color: #b34d75;
+
+    text-align: center;
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    font-weight: bold;
+}
+
+
+.section > h2 {
+    margin-bottom: 38px;
+
+    color: #651b40;
+
+    text-align: center;
+
+    font-size: 40px;
+
+    font-weight: normal;
+}
+
+
+/* =====================================
+   BOOK GRID
+===================================== */
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(250px, 1fr)
+        );
+
+    gap: 28px;
+
+    max-width: 1400px;
+
+    margin: auto;
+}
+
+
+/* =====================================
+   BOOK CARDS
+===================================== */
+
+.card {
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 1px solid #eadfe1;
+
+    border-radius: 3px;
+
+    box-shadow:
+        0 8px 25px rgba(78, 33, 51, 0.08);
+
+    transition: 0.3s;
+}
+
+
+.card:hover {
+    transform: translateY(-7px);
+
+    border-color: #d99bb3;
+
+    box-shadow:
+        0 15px 35px rgba(78, 33, 51, 0.15);
+}
+
+
+/* =====================================
+   BOOK IMAGE
+===================================== */
+
+.product-image-wrap {
+    width: 100%;
+
+    height: 330px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7dbe7,
+            #e6dcf5
+        );
+}
+
+
+.product-image {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: 0.4s;
+}
+
+
+.card:hover .product-image {
+    transform: scale(1.04);
+}
+
+
+/* =====================================
+   CARD CONTENT
+===================================== */
+
+.card-body {
+    padding: 22px;
+}
+
+
+.card-body h3 {
+    margin: 0 0 12px;
+
+    color: #32152d;
+
+    font-size: 21px;
+
+    line-height: 1.3;
+}
+
+
+.card-body p {
+    color: #735b69;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+.book-category {
+    color: #b02e60 !important;
+
+    font-size: 11px !important;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+.view-note {
+    color: #aa8b9c !important;
+
+    font-size: 12px !important;
+
+    font-style: italic;
+}
+
+
+.price {
+    color: #8f1f4f !important;
+
+    font-size: 21px !important;
+
+    font-weight: bold;
+}
+
+
+/* =====================================
+   BOOKSTORE FEATURE SECTION
+===================================== */
+
+.quote-section {
+    padding: 85px 20px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f9e0ea,
+            #fff4df,
+            #e8e0fa
+        );
+
+    border-top: 1px solid #ead1c9;
+
+    border-bottom: 1px solid #ead1c9;
+}
+
+
+.quote-section p {
+    max-width: 800px;
+
+    margin: auto;
+
+    color: #651b40;
+
+    font-size: 32px;
+
+    font-style: italic;
+
+    line-height: 1.5;
+}
+
+
+.quote-section span {
+    display: block;
+
+    margin-top: 18px;
+
+    color: #a34b70;
+
+    letter-spacing: 2px;
+}
+
+
+/* =====================================
+   TABLE
+===================================== */
 
 .table {
     width: 100%;
@@ -9,139 +461,97 @@
 
     margin-top: 30px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #321650,
-            #17102c
-        );
+    background: #ffffff;
 
-    border: 1px solid #76519d;
+    border: 1px solid #ead1d9;
 
-    color: #f8e9c5;
+    color: #32152d;
 
     box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.3);
+        0 5px 20px rgba(78, 33, 51, 0.06);
 }
 
 
 .table th {
-    background:
-        linear-gradient(
-            135deg,
-            #4a236d,
-            #2a1749
-        );
+    padding: 17px;
 
-    color: #ffd76a;
+    background: #f6dce7;
 
-    padding: 18px;
+    color: #651b40;
 
     text-align: left;
 
-    border-bottom: 2px solid #b18a3a;
+    border-bottom: 2px solid #d99bb3;
 }
 
 
 .table td {
-    padding: 18px;
+    padding: 17px;
 
-    border-bottom: 1px solid #49335e;
+    color: #735b69;
 
-    color: #e0d3ed;
+    border-bottom: 1px solid #f0e3e8;
 }
 
 
 .table tr:hover {
-    background: #3b2057;
+    background: #fff4f7;
 }
 
 
-/* ================================
-   ORDER STATUS
-================================ */
-
-.status {
-    display: inline-block;
-
-    padding: 6px 12px;
-
-    border: 1px solid #b18a3a;
-
-    border-radius: 20px;
-
-    color: #ffd76a;
-
-    background: rgba(177, 138, 58, 0.12);
-
-    font-size: 12px;
-
-    font-weight: bold;
-}
-
-
-/* ================================
+/* =====================================
    FORM PAGE
-================================ */
+===================================== */
 
 .form {
     width: min(500px, 90%);
 
-    margin: 80px auto;
+    margin: 70px auto;
 
-    padding: 45px;
+    padding: 40px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #321650,
-            #17102c
-        );
+    background: #ffffff;
 
-    border: 1px solid #76519d;
+    border: 1px solid #ead1d9;
 
-    border-radius: 8px;
+    border-radius: 5px;
 
     box-shadow:
-        0 15px 45px rgba(0, 0, 0, 0.5);
+        0 12px 35px rgba(78, 33, 51, 0.1);
 
     text-align: center;
 }
 
 
 .form h1 {
-    color: #ffe6a1;
+    color: #651b40;
 
-    font-size: 40px;
+    font-size: 38px;
 
     font-weight: normal;
-
-    margin-bottom: 20px;
 }
 
 
 .form p {
-    color: #d3c4e4;
+    color: #735b69;
 
     line-height: 1.7;
 }
 
 
 .form form {
-    text-align: left;
+    margin-top: 25px;
 
-    margin-top: 30px;
+    text-align: left;
 }
 
 
 .form label {
     display: block;
 
-    margin-top: 18px;
+    margin: 18px 0 8px;
 
-    margin-bottom: 8px;
-
-    color: #ffd76a;
+    color: #651b40;
 
     font-weight: bold;
 }
@@ -150,15 +560,15 @@
 .form input {
     width: 100%;
 
-    padding: 14px;
+    padding: 13px;
 
-    background: #10091c;
+    background: #fffafc;
 
-    color: #fff5dd;
+    color: #32152d;
 
-    border: 1px solid #76519d;
+    border: 1px solid #dcbac8;
 
-    border-radius: 4px;
+    border-radius: 3px;
 
     font-family: Georgia, serif;
 
@@ -169,22 +579,15 @@
 .form input:focus {
     outline: none;
 
-    border-color: #ffd76a;
+    border-color: #b02e60;
 
     box-shadow:
-        0 0 10px rgba(255, 215, 106, 0.3);
-}
-
-
-.form .button {
-    cursor: pointer;
-
-    font-family: Georgia, serif;
+        0 0 8px rgba(176, 46, 96, 0.15);
 }
 
 
 .form a {
-    color: #ffd76a;
+    color: #a42d5b;
 
     text-decoration: none;
 }
@@ -195,11 +598,123 @@
 }
 
 
-/* ================================
-   MOBILE TABLE
-================================ */
+/* =====================================
+   STATUS
+===================================== */
+
+.status {
+    display: inline-block;
+
+    padding: 6px 12px;
+
+    background: #f8e6c7;
+
+    border: 1px solid #e2b96c;
+
+    border-radius: 20px;
+
+    color: #80551a;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+
+/* =====================================
+   FOOTER
+===================================== */
+
+.footer {
+    padding: 45px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            90deg,
+            #4e1837,
+            #72214b,
+            #4e1837
+        );
+
+    color: #ffe8bc;
+
+    letter-spacing: 3px;
+}
+
+
+.footer span {
+    display: block;
+
+    margin-top: 12px;
+
+    color: #f2c9d9;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =====================================
+   MOBILE RESPONSIVE
+===================================== */
 
 @media (max-width: 700px) {
+
+    .nav {
+        height: auto;
+
+        padding: 20px;
+
+        flex-direction: column;
+
+        gap: 18px;
+    }
+
+
+    .nav-links {
+        gap: 15px;
+    }
+
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+
+    .hero {
+        min-height: 550px;
+
+        padding: 55px 25px;
+    }
+
+
+    .hero h1 {
+        font-size: 45px;
+    }
+
+
+    .hero p:not(:first-child) {
+        font-size: 16px;
+    }
+
+
+    .section {
+        padding: 55px 20px;
+    }
+
+
+    .section > h2 {
+        font-size: 33px;
+    }
+
+
+    .quote-section p {
+        font-size: 25px;
+    }
+
 
     .table {
         display: block;
@@ -213,12 +728,7 @@
     .form {
         padding: 28px 22px;
 
-        margin: 45px auto;
-    }
-
-
-    .form h1 {
-        font-size: 32px;
+        margin: 40px auto;
     }
 
 }
