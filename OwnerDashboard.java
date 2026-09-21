@@ -5,7 +5,7 @@ public class OwnerDashboard {
     public static void open(Scanner in, UserData users,
                             ProductData products, OrderData orders) {
         while (true) {
-            System.out.println("\n--- SNEHAMART OWNER DASHBOARD ---");
+            System.out.println("\n--- INDIRAHUB OWNER DASHBOARD ---");
             System.out.println("1. View all dresses");
             System.out.println("2. View all users");
             System.out.println("3. View all orders");
