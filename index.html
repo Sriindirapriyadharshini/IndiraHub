@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IndiraHub - India's premium destination for cutting-edge electronics and curated programming & science books. Fast shipping, guaranteed authenticity.">
+    <title>IndiraHub | Electronics & Books Superstore</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Ambient Lighting Effects -->
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="app-header">
+        <div class="header-container">
+            <a href="index.html" class="brand-logo" id="brand-logo-link">
+                <div class="brand-icon">⚡</div>
+                <div>
+                    <span class="gradient-text">IndiraHub</span>
+                </div>
+                <span class="brand-tag">PRO</span>
+            </a>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="search-input" class="search-input" placeholder="Search laptops, smartphones, books, headphones..." autocomplete="off">
+            </div>
+
+            <!-- Header Actions -->
+            <div class="header-actions">
+                <button class="btn-icon" onclick="openQrModal()" title="Scan QR Code to open on Mobile" style="color:var(--primary-light); border-color:var(--border-color);">
+                    <span>📱 Scan QR</span>
+                </button>
+
+                <a href="admin.html" class="btn-icon" style="color:var(--accent-magenta); border-color:rgba(217,70,239,0.3)" title="Admin Control Center (Restricted)">
+                    <span>🔐 Admin Hub</span>
+                </a>
+
+                <button class="btn-icon" id="cart-toggle-btn" onclick="toggleCart()" aria-label="Shopping Cart">
+                    <span>🛒 Cart</span>
+                    <span id="cart-badge" class="cart-badge" style="display: none;">0</span>
+                </button>
+
+                <div id="auth-nav-container">
+                    <a href="login.html" class="btn-primary" id="login-nav-btn">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- HERO BANNER SECTION -->
+        <section class="hero-section">
+            <div class="hero-card">
+                <div class="hero-content">
+                    <div class="hero-tag">
+                        <span>✨ New Spring 2026 Collection</span>
+                    </div>
+                    <h1 class="hero-title">
+                        Your Modern Tech, Home & <span class="gradient-text" style="background:linear-gradient(135deg, #818cf8 0%, #34d399 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Lifestyle</span> Superstore
+                    </h1>
+                    <p class="hero-description">
+                        Discover top-tier electronics, modern home decor, fitness gear, gourmet kitchenware, beauty essentials, apparel, and healthy snacks.
+                    </p>
+                    <div class="hero-cta-group">
+                        <button class="btn-primary" onclick="document.getElementById('catalog-section').scrollIntoView({behavior: 'smooth'})">
+                            Explore Catalog ↓
+                        </button>
+                        <button class="btn-outline" onclick="document.querySelector('[data-category=Electronics]').click(); document.getElementById('catalog-section').scrollIntoView({behavior: 'smooth'})">
+                            📱 Electronics
+                        </button>
+                        <button class="btn-outline" onclick="document.querySelector('[data-category=\'Home Decor\']').click(); document.getElementById('catalog-section').scrollIntoView({behavior: 'smooth'})">
+                            🏠 Home Decor
+                        </button>
+                        <button class="btn-outline" onclick="document.querySelector('[data-category=Fitness]').click(); document.getElementById('catalog-section').scrollIntoView({behavior: 'smooth'})">
+                            🏋️ Fitness
+                        </button>
+                        <button class="btn-outline" onclick="document.querySelector('[data-category=\'Kitchen & Baking\']').click(); document.getElementById('catalog-section').scrollIntoView({behavior: 'smooth'})">
+                            🍳 Kitchen
+                        </button>
+                        <button class="btn-outline" onclick="document.querySelector('[data-category=\'Beauty & Makeup\']').click(); document.getElementById('catalog-section').scrollIntoView({behavior: 'smooth'})">
+                            💄 Beauty
+                        </button>
+                        <button class="btn-outline" onclick="document.querySelector('[data-category=\'Apparel & Fashion\']').click(); document.getElementById('catalog-section').scrollIntoView({behavior: 'smooth'})">
+                            👗 Fashion
+                        </button>
+                        <button class="btn-outline" onclick="document.querySelector('[data-category=\'Groceries & Snacks\']').click(); document.getElementById('catalog-section').scrollIntoView({behavior: 'smooth'})">
+                            🥨 Snacks
+                        </button>
+                    </div>
+                </div>
+
+                <div class="hero-image-wrapper">
+                    <img class="hero-img" src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?auto=format&fit=crop&w=800&q=80" alt="IndiraHub Lifestyle Superstore">
+                    <div class="hero-floating-stat">
+                        <div class="stat-icon">⭐</div>
+                        <div>
+                            <div class="stat-value">4.9 / 5.0</div>
+                            <div class="stat-label">From 15,000+ Verified Buyers</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES / VALUE PROPOSITION BAR -->
+        <section class="features-bar">
+            <div class="feature-pill">
+                <div class="feature-pill-icon">🚚</div>
+                <div>
+                    <div class="feature-pill-title">Free Express Delivery</div>
+                    <div class="feature-pill-desc">On all orders above ₹999</div>
+                </div>
+            </div>
+
+            <div class="feature-pill">
+                <div class="feature-pill-icon">🛡️</div>
+                <div>
+                    <div class="feature-pill-title">100% Genuine Guaranteed</div>
+                    <div class="feature-pill-desc">Direct brand warranty included</div>
+                </div>
+            </div>
+
+            <div class="feature-pill">
+                <div class="feature-pill-icon">⚡</div>
+                <div>
+                    <div class="feature-pill-title">Instant Dispatch</div>
+                    <div class="feature-pill-desc">Same-day shipping across India</div>
+                </div>
+            </div>
+
+            <div class="feature-pill">
+                <div class="feature-pill-icon">💳</div>
+                <div>
+                    <div class="feature-pill-title">Seamless Payments</div>
+                    <div class="feature-pill-desc">UPI, COD, NetBanking & Cards</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCT CATALOG SECTION -->
+        <section class="catalog-section" id="catalog-section">
+            <div class="catalog-header">
+                <div class="catalog-title-group">
+                    <h2>Explore Curated Collections</h2>
+                    <p>Hand-picked premium products across tech, home, fitness, beauty, and food.</p>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="category-tabs" role="tablist">
+                    <button class="tab-btn active" data-category="All" role="tab" id="tab-all">All Items</button>
+                    <button class="tab-btn" data-category="Electronics" role="tab" id="tab-electronics">📱 Electronics</button>
+                    <button class="tab-btn" data-category="Home Decor" role="tab" id="tab-homedecor">🏠 Home Decor</button>
+                    <button class="tab-btn" data-category="Fitness" role="tab" id="tab-fitness">🏋️ Fitness</button>
+                    <button class="tab-btn" data-category="Kitchen & Baking" role="tab" id="tab-kitchen">🍳 Kitchen & Baking</button>
+                    <button class="tab-btn" data-category="Beauty & Makeup" role="tab" id="tab-beauty">💄 Beauty & Makeup</button>
+                    <button class="tab-btn" data-category="Apparel & Fashion" role="tab" id="tab-fashion">👗 Apparel & Fashion</button>
+                    <button class="tab-btn" data-category="Groceries & Snacks" role="tab" id="tab-snacks">🥨 Groceries & Snacks</button>
+                    <button class="tab-btn" data-category="Books" role="tab" id="tab-books">📚 Books</button>
+                </div>
+            </div>
+
+            <!-- Toolbar Controls -->
+            <div class="catalog-toolbar">
+                <div class="product-count-badge">
+                    Showing <strong id="products-count">Loading...</strong>
+                </div>
+
+                <div class="sort-select-wrapper">
+                    <label for="sort-select" style="font-size:0.85rem; color:var(--text-secondary);">Sort by:</label>
+                    <select id="sort-select" class="sort-select">
+                        <option value="featured">Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Highest Rated</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Products Grid Container -->
+            <div id="products-grid" class="products-grid">
+                <!-- Dynamically populated via app.js -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SLIDE-OVER CART DRAWER -->
+    <div id="cart-backdrop" class="cart-drawer-backdrop" onclick="toggleCart()"></div>
+    <div id="cart-drawer" class="cart-drawer" aria-labelledby="cart-heading">
+        <div class="cart-header">
+            <h3 id="cart-heading">🛒 Your Cart</h3>
+            <button class="close-btn" onclick="toggleCart()" aria-label="Close cart">✕</button>
+        </div>
+
+        <!-- Free Shipping Meter -->
+        <div class="shipping-meter">
+            <div id="free-shipping-notice">Add items worth ₹999 for FREE Delivery</div>
+            <div class="meter-track">
+                <div id="free-shipping-fill" class="meter-fill" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <!-- Cart Items List -->
+        <div id="cart-items-container" class="cart-items-list">
+            <!-- Dynamically populated -->
+        </div>
+
+        <!-- Cart Summary & Checkout -->
+        <div class="cart-footer">
+            <div class="price-breakdown">
+                <div class="breakdown-row">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal">₹0</span>
+                </div>
+                <div class="breakdown-row">
+                    <span>Estimated Shipping</span>
+                    <span id="cart-shipping">₹0</span>
+                </div>
+                <div class="breakdown-row total">
+                    <span>Estimated Total</span>
+                    <span id="cart-total" style="color:var(--accent-emerald);">₹0</span>
+                </div>
+            </div>
+
+            <button id="cart-checkout-btn" class="checkout-btn" onclick="openCheckoutModal()">
+                <span>Proceed to Checkout →</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- CHECKOUT MODAL -->
+    <div id="checkout-backdrop" class="modal-backdrop" onclick="closeCheckoutModal()"></div>
+    <div id="checkout-modal" class="modal-backdrop">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3>🛍️ Complete Your Order</h3>
+                <button class="close-btn" onclick="closeCheckoutModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <form id="checkout-form" onsubmit="handleCheckoutSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="checkout-name">Full Name *</label>
+                            <input type="text" id="checkout-name" class="form-input" required placeholder="e.g. Ramesh Kumar">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="checkout-email">Email Address *</label>
+                            <input type="email" id="checkout-email" class="form-input" required placeholder="name@example.com">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="checkout-phone">Phone Number *</label>
+                            <input type="tel" id="checkout-phone" class="form-input" required placeholder="+91 98765 43210">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="checkout-pincode">Pincode *</label>
+                            <input type="text" id="checkout-pincode" class="form-input" required placeholder="e.g. 560001">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="checkout-address">Shipping Street Address *</label>
+                        <textarea id="checkout-address" class="form-textarea" rows="2" required placeholder="Flat/House No., Building, Street, City, State"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Select Payment Method</label>
+                        <div class="payment-options">
+                            <div class="payment-card selected">
+                                <input type="radio" name="paymentMethod" value="COD" checked>
+                                <div class="payment-icon">💵</div>
+                                <div class="payment-title">Cash on Delivery</div>
+                            </div>
+                            <div class="payment-card">
+                                <input type="radio" name="paymentMethod" value="UPI">
+                                <div class="payment-icon">📱</div>
+                                <div class="payment-title">UPI / QR Code</div>
+                            </div>
+                            <div class="payment-card">
+                                <input type="radio" name="paymentMethod" value="CARD">
+                                <div class="payment-icon">💳</div>
+                                <div class="payment-title">Credit / Debit Card</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:16px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-weight:600; color:var(--text-secondary);">Total Payable:</span>
+                        <span id="checkout-summary-amount" style="font-size:1.4rem; font-weight:800; color:var(--accent-emerald); font-family:var(--font-heading);">₹0</span>
+                    </div>
+
+                    <button type="submit" class="checkout-btn">
+                        <span>Confirm & Place Order ⚡</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MY ORDERS MODAL -->
+    <div id="orders-backdrop" class="modal-backdrop" onclick="closeOrdersModal()"></div>
+    <div id="orders-modal" class="modal-backdrop">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3>📦 My Order History</h3>
+                <button class="close-btn" onclick="closeOrdersModal()">✕</button>
+            </div>
+            <div class="modal-body" id="orders-list">
+                <!-- Dynamically loaded -->
+            </div>
+        </div>
+    </div>
+
+    <!-- QUICK VIEW MODAL -->
+    <div id="quickview-backdrop" class="modal-backdrop" onclick="closeQuickView()"></div>
+    <div id="quickview-modal" class="modal-backdrop">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3>Product Details</h3>
+                <button class="close-btn" onclick="closeQuickView()">✕</button>
+            </div>
+            <div class="modal-body" id="quickview-body">
+                <!-- Dynamically loaded -->
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="brand-logo">
+                    <div class="brand-icon">⚡</div>
+                    <span class="gradient-text">IndiraHub</span>
+                </a>
+                <p>
+                    Your premier destination for electronics, modern home decor, fitness, kitchenware, beauty, fashion, and snacks.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Collections</h4>
+                <ul>
+                    <li><a href="#" onclick="document.querySelector('[data-category=Electronics]').click(); document.getElementById('catalog-section').scrollIntoView();">Tech & Electronics</a></li>
+                    <li><a href="#" onclick="document.querySelector('[data-category=\'Home Decor\']').click(); document.getElementById('catalog-section').scrollIntoView();">Home Decor & Living</a></li>
+                    <li><a href="#" onclick="document.querySelector('[data-category=Fitness]').click(); document.getElementById('catalog-section').scrollIntoView();">Fitness & Health</a></li>
+                    <li><a href="#" onclick="document.querySelector('[data-category=\'Kitchen & Baking\']').click(); document.getElementById('catalog-section').scrollIntoView();">Kitchen & Baking</a></li>
+                    <li><a href="#" onclick="document.querySelector('[data-category=\'Beauty & Makeup\']').click(); document.getElementById('catalog-section').scrollIntoView();">Beauty & Makeup</a></li>
+                    <li><a href="#" onclick="document.querySelector('[data-category=\'Apparel & Fashion\']').click(); document.getElementById('catalog-section').scrollIntoView();">Apparel & Fashion</a></li>
+                    <li><a href="#" onclick="document.querySelector('[data-category=\'Groceries & Snacks\']').click(); document.getElementById('catalog-section').scrollIntoView();">Groceries & Snacks</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Customer Care</h4>
+                <ul>
+                    <li><a href="#" onclick="openOrdersModal()">Track Your Order</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Returns & Refunds</a></li>
+                    <li><a href="#">Contact Support</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Developers & API</h4>
+                <ul>
+                    <li><a href="/h2-console" target="_blank">H2 Database Console</a></li>
+                    <li><a href="/api/products" target="_blank">REST API (/api/products)</a></li>
+                    <li><a href="/api/orders" target="_blank">Orders API (/api/orders)</a></li>
+                    <li><a href="admin.html" style="color:var(--primary-light); font-weight:700;">Admin Control Hub 🔐</a></li>
+                    <li><a href="login.html">Demo Accounts</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 IndiraHub. Built with Spring Boot & Modern Web Standards.</span>
+            <span>Crafted for high performance & responsive experiences.</span>
+        </div>
+    </footer>
+
+    <!-- AI CHATBOT FLOATING WIDGET (INDIRABOT) -->
+    <button class="chatbot-launcher" onclick="toggleChatbot()" id="chatbot-launcher-btn" aria-label="Open AI Assistant">
+        <span style="font-size:1.2rem;">🤖</span>
+        <span>Chat with IndiraBot</span>
+    </button>
+
+    <div class="chatbot-window" id="chatbot-window">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="bot-avatar">⚡</div>
+                <div>
+                    <div style="font-weight:700; font-size:0.92rem;">IndiraBot AI</div>
+                    <div style="font-size:0.75rem; color:#34d399; display:flex; align-items:center; gap:4px;">
+                        <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:#34d399;"></span>
+                        Online Assistant
+                    </div>
+                </div>
+            </div>
+            <button class="close-btn" style="width:28px; height:28px; font-size:0.9rem;" onclick="toggleChatbot()">✕</button>
+        </div>
+
+        <div class="chat-messages" id="chat-messages">
+            <div class="chat-msg bot">
+                👋 Hello! I am <strong>IndiraBot</strong>, your smart shopping assistant. How can I help you find products, track an order, or check shipping today?
+            </div>
+        </div>
+
+        <div class="chat-suggestions">
+            <button class="chat-chip" onclick="sendChatPrompt('Recommend a laptop under 50000')">💻 Recommend Laptop</button>
+            <button class="chat-chip" onclick="sendChatPrompt('Show Fitness gear')">🏋️ Fitness Gear</button>
+            <button class="chat-chip" onclick="sendChatPrompt('Track my order')">📦 Track Order</button>
+            <button class="chat-chip" onclick="sendChatPrompt('What is your shipping policy?')">🚚 Free Shipping</button>
+        </div>
+
+        <form class="chat-input-bar" onsubmit="handleChatSubmit(event)">
+            <input type="text" id="chat-input" class="chat-input" placeholder="Ask about products, orders, shipping..." autocomplete="off">
+            <button type="submit" class="chat-send-btn">➤</button>
+        </form>
+    </div>
+
+    <!-- QR CODE POPUP MODAL -->
+    <div id="qr-modal-backdrop" class="modal-backdrop" onclick="closeQrModal()"></div>
+    <div id="qr-modal" class="modal-backdrop">
+        <div class="modal-content" style="max-width:380px; text-align:center; padding:32px 24px; border:1px solid var(--border-glow); box-shadow:var(--shadow-elevated);" onclick="event.stopPropagation()">
+            <div class="modal-header" style="justify-content:center; position:relative; margin-bottom:20px;">
+                <h3 style="font-family:var(--font-heading); font-size:1.35rem; color:var(--text-primary);">📱 Scan to Visit IndiraHub</h3>
+                <button class="close-btn" style="position:absolute; right:0; top:0;" onclick="closeQrModal()">✕</button>
+            </div>
+            <div class="modal-body" style="padding:0;">
+                <div style="background:#ffffff; padding:18px; border-radius:18px; display:inline-block; box-shadow:var(--shadow-glow); border:2px solid var(--primary-light);">
+                    <img src="qrcode.svg" alt="IndiraHub QR Code" style="width:210px; height:210px; display:block;">
+                </div>
+                <h4 style="margin-top:18px; font-weight:700; color:var(--text-primary); font-size:1.05rem;">Quick Mobile Access</h4>
+                <p style="color:var(--text-secondary); font-size:0.86rem; margin-top:6px; line-height:1.5;">Scan with your smartphone camera to browse the store, shop electronics & books, or track your live orders anywhere.</p>
+                <div style="margin-top:20px; display:flex; gap:10px; justify-content:center;">
+                    <a href="qrcode.png" download="IndiraHub_QR.png" class="btn-primary" style="font-size:0.85rem; padding:8px 16px; text-decoration:none;">⬇️ Download QR (PNG)</a>
+                    <a href="qrcode.svg" download="IndiraHub_QR.svg" class="btn-outline" style="font-size:0.85rem; padding:8px 14px; text-decoration:none;">SVG</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+</body>
+</html>
