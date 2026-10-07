@@ -1,0 +1,6 @@
+target/
+.git/
+.mvn/
+node_modules/
+*.log
+.DS_Store

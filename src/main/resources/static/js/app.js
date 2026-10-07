@@ -1,9 +1,8 @@
 /**
- * IndiraHub - Multi-Category Lifestyle Superstore
+ * IndiraHub - E-Commerce Client Application
  */
 
 const FALLBACK_PRODUCTS = [
-    // 1. ELECTRONICS
     {
         id: 1,
         name: "ProBook Ultra 16\" Laptop",
@@ -66,6 +65,18 @@ const FALLBACK_PRODUCTS = [
     },
     {
         id: 6,
+        name: "TurboCharge 20000mAh Power Bank",
+        description: "22.5W Two-way Fast Charging, Dual USB-A + Type-C Power Delivery, compact anti-scratch shell.",
+        price: 799.00,
+        category: "Electronics",
+        imageUrl: "https://images.unsplash.com/photo-1609592424109-dd9892f1b177?auto=format&fit=crop&w=700&q=80",
+        stock: 110,
+        rating: 4.4,
+        reviewsCount: 164,
+        badge: "Essential"
+    },
+    {
+        id: 7,
         name: "VisionView 27\" QHD Gaming Monitor",
         description: "2560x1440 IPS Panel, 165Hz Refresh Rate, 1ms Response Time, HDR400, AMD FreeSync Premium support.",
         price: 16499.00,
@@ -76,310 +87,20 @@ const FALLBACK_PRODUCTS = [
         reviewsCount: 64,
         badge: "New"
     },
-
-    // 2. HOME DECOR
-    {
-        id: 7,
-        name: "Levitating Magnetic Moon Ambient Lamp",
-        description: "3D-printed realistic lunar surface floating mid-air via magnetic levitation, touch sensor with warm and cool glow modes.",
-        price: 2999.00,
-        category: "Home Decor",
-        imageUrl: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=700&q=80",
-        stock: 35,
-        rating: 4.9,
-        reviewsCount: 175,
-        badge: "Trending"
-    },
     {
         id: 8,
-        name: "Orbital Zero-Gravity Ergonomic Lounge Chair",
-        description: "Weightless spine decompression posture design with breathable mesh upholstery, memory foam neck support pillow.",
-        price: 18499.00,
-        category: "Home Decor",
-        imageUrl: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=700&q=80",
-        stock: 12,
-        rating: 4.8,
-        reviewsCount: 52,
-        badge: "Luxury"
+        name: "PrecisionStrike Wireless Gaming Mouse",
+        description: "PAW3395 26000 DPI Optical Sensor, 59g ultra-lightweight ergonomic chassis, 80-hour battery life.",
+        price: 1299.00,
+        category: "Electronics",
+        imageUrl: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=700&q=80",
+        stock: 45,
+        rating: 4.6,
+        reviewsCount: 73,
+        badge: "Top Choice"
     },
     {
         id: 9,
-        name: "Nordic Minimalist Ceramic Vase Trio",
-        description: "Set of 3 matte-finish handcrafted ceramic vases in neutral sandstone tones, geometric sculptural aesthetic.",
-        price: 1299.00,
-        category: "Home Decor",
-        imageUrl: "https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?auto=format&fit=crop&w=700&q=80",
-        stock: 50,
-        rating: 4.7,
-        reviewsCount: 89,
-        badge: "Editor's Pick"
-    },
-    {
-        id: 10,
-        name: "Sunset Atmosphere RGB Smart Projection Lamp",
-        description: "16-million color gradient sunset and golden hour projection with smartphone Bluetooth app controls.",
-        price: 899.00,
-        category: "Home Decor",
-        imageUrl: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=700&q=80",
-        stock: 90,
-        rating: 4.6,
-        reviewsCount: 230,
-        badge: "Bestseller"
-    },
-
-    // 3. FITNESS
-    {
-        id: 11,
-        name: "Pro-Series Gravity Inversion Boots",
-        description: "Heavy-duty aerospace-grade dual-lock alloy clamps with thick contoured ankle padding for spinal decompression and core workout.",
-        price: 3799.00,
-        category: "Fitness",
-        imageUrl: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=700&q=80",
-        stock: 30,
-        rating: 4.8,
-        reviewsCount: 78,
-        badge: "Pro Fitness"
-    },
-    {
-        id: 12,
-        name: "Quick-Dial Adjustable Dumbbell Pair (24kg)",
-        description: "Rapid 15-in-1 weight dial adjustment system from 2.5kg to 24kg per dumbbell with non-slip knurled grip handle.",
-        price: 7999.00,
-        category: "Fitness",
-        imageUrl: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=700&q=80",
-        stock: 20,
-        rating: 4.9,
-        reviewsCount: 110,
-        badge: "Top Rated"
-    },
-    {
-        id: 13,
-        name: "Non-Slip High-Density TPE Yoga Mat 8mm",
-        description: "Laser-etched body alignment lines, dual-sided textured grip, eco-friendly tear-resistant cushioned joint protection.",
-        price: 1199.00,
-        category: "Fitness",
-        imageUrl: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?auto=format&fit=crop&w=700&q=80",
-        stock: 65,
-        rating: 4.7,
-        reviewsCount: 195,
-        badge: "Popular"
-    },
-    {
-        id: 14,
-        name: "Smart Digital Jump Rope with Calorie Tracker",
-        description: "High-speed dual ball bearings, cordless and roped dual modes, backlit LCD screen displaying jump rotations and burn.",
-        price: 749.00,
-        category: "Fitness",
-        imageUrl: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700&q=80",
-        stock: 80,
-        rating: 4.5,
-        reviewsCount: 142,
-        badge: "Must Have"
-    },
-
-    // 4. KITCHEN & BAKING
-    {
-        id: 15,
-        name: "MasterBake Convection Air Fryer & Oven 12L",
-        description: "360° high-speed heat vortex convection, 16 smart presets for sourdough, rotisserie, pastries, and oil-free crisping.",
-        price: 6499.00,
-        category: "Kitchen & Baking",
-        imageUrl: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=700&q=80",
-        stock: 22,
-        rating: 4.8,
-        reviewsCount: 95,
-        badge: "Top Chef"
-    },
-    {
-        id: 16,
-        name: "Gravity-Defying Illusion Cake Craft Kit",
-        description: "Complete food-grade internal support structure armature, pouring candy spout mold, and premium silicone decorating tools.",
-        price: 1499.00,
-        category: "Kitchen & Baking",
-        imageUrl: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80",
-        stock: 45,
-        rating: 4.7,
-        reviewsCount: 64,
-        badge: "Viral Hit"
-    },
-    {
-        id: 17,
-        name: "Japanese VG-10 Damascus Chef Knife 8\"",
-        description: "67 layers of forged Damascus steel, razor-sharp 15° hand-honed blade angle, balanced ergonomic pakkawood handle.",
-        price: 3899.00,
-        category: "Kitchen & Baking",
-        imageUrl: "https://images.unsplash.com/photo-1593618998160-e34014e67546?auto=format&fit=crop&w=700&q=80",
-        stock: 35,
-        rating: 4.9,
-        reviewsCount: 160,
-        badge: "Chef Choice"
-    },
-    {
-        id: 18,
-        name: "Pre-Seasoned Cast Iron Dutch Oven (5.5L)",
-        description: "Heavy-gauge enameled cast iron delivering superior heat distribution and retention for artisan bread and stews.",
-        price: 2799.00,
-        category: "Kitchen & Baking",
-        imageUrl: "https://images.unsplash.com/photo-1584990347449-39958bc30953?auto=format&fit=crop&w=700&q=80",
-        stock: 28,
-        rating: 4.8,
-        reviewsCount: 115,
-        badge: "Classic"
-    },
-
-    // 5. BEAUTY & MAKEUP
-    {
-        id: 19,
-        name: "Zero-G Weightless Velvet Matte Primer (30ml)",
-        description: "Ultra-lightweight pore-blurring formula enriched with niacinamide, creates a velvety smooth canvas that locks makeup 16 hours.",
-        price: 1299.00,
-        category: "Beauty & Makeup",
-        imageUrl: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80",
-        stock: 70,
-        rating: 4.8,
-        reviewsCount: 210,
-        badge: "Bestseller"
-    },
-    {
-        id: 20,
-        name: "Celestial Chromatic 18-Color Eyeshadow Palette",
-        description: "Richly pigmented buttery mattes, molten multi-chromes, and high-shine foils for effortless day-to-night eye artistry.",
-        price: 1699.00,
-        category: "Beauty & Makeup",
-        imageUrl: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=700&q=80",
-        stock: 50,
-        rating: 4.7,
-        reviewsCount: 184,
-        badge: "Trending"
-    },
-    {
-        id: 21,
-        name: "Botanical Glow Vitamin C Radiance Serum",
-        description: "15% Pure L-Ascorbic Acid infused with Hyaluronic Acid and Ferulic Acid to brighten skin tone and smooth fine lines.",
-        price: 1499.00,
-        category: "Beauty & Makeup",
-        imageUrl: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=80",
-        stock: 60,
-        rating: 4.9,
-        reviewsCount: 320,
-        badge: "Top Rated"
-    },
-    {
-        id: 22,
-        name: "Velvet Matte Moisture Lip Trio Set",
-        description: "Three universally flattering shades in a featherlight, non-drying transfer-resistant formula infused with jojoba oil.",
-        price: 999.00,
-        category: "Beauty & Makeup",
-        imageUrl: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=700&q=80",
-        stock: 85,
-        rating: 4.6,
-        reviewsCount: 150,
-        badge: "Hot Deal"
-    },
-
-    // 6. APPAREL & FASHION
-    {
-        id: 23,
-        name: "Sculpting Compression Seamless Midi Dress",
-        description: "Body-contouring 4-way micro-compression ribbed fabric, weightless breathability, and flattering silhouette for all occasions.",
-        price: 2899.00,
-        category: "Apparel & Fashion",
-        imageUrl: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=700&q=80",
-        stock: 40,
-        rating: 4.8,
-        reviewsCount: 130,
-        badge: "Iconic"
-    },
-    {
-        id: 24,
-        name: "Minimalist 450 GSM French Terry Hoodie",
-        description: "Heavyweight combed organic cotton hoodie with dropped shoulders, double-layered hood, and clean tailored seams.",
-        price: 1899.00,
-        category: "Apparel & Fashion",
-        imageUrl: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=700&q=80",
-        stock: 55,
-        rating: 4.7,
-        reviewsCount: 175,
-        badge: "Trending"
-    },
-    {
-        id: 25,
-        name: "AeroFlow Weatherproof Tech Performance Jacket",
-        description: "Ultralight windproof and water-resistant shell with magnetic storm flap and concealed zip utility pockets.",
-        price: 2299.00,
-        category: "Apparel & Fashion",
-        imageUrl: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=700&q=80",
-        stock: 35,
-        rating: 4.6,
-        reviewsCount: 92,
-        badge: "New Season"
-    },
-    {
-        id: 26,
-        name: "Urban Edge Modular Crossbody Sling Bag",
-        description: "Water-repellent structured Cordura canvas with German Fidlock magnetic buckle, waterproof zippers, and tablet sleeve.",
-        price: 1999.00,
-        category: "Apparel & Fashion",
-        imageUrl: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=700&q=80",
-        stock: 45,
-        rating: 4.8,
-        reviewsCount: 115,
-        badge: "Bestseller"
-    },
-
-    // 7. GROCERIES & SNACKS
-    {
-        id: 27,
-        name: "Astro Orbit Freeze-Dried Real Fruit Medley (3pk)",
-        description: "100% whole strawberries, mango chunks, and bananas freeze-dried to crunchy perfection. Zero added sugar or preservatives.",
-        price: 499.00,
-        category: "Groceries & Snacks",
-        imageUrl: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=700&q=80",
-        stock: 120,
-        rating: 4.9,
-        reviewsCount: 280,
-        badge: "Staff Pick"
-    },
-    {
-        id: 28,
-        name: "Roasted Himalayan Foxnut Makhana Trio (300g)",
-        description: "Slow-roasted lotus seeds in extra virgin olive oil: Peri-Peri Crunch, Himalayan Pink Salt, and Herbed Truffle Cheese.",
-        price: 399.00,
-        category: "Groceries & Snacks",
-        imageUrl: "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=700&q=80",
-        stock: 150,
-        rating: 4.7,
-        reviewsCount: 340,
-        badge: "Healthy Choice"
-    },
-    {
-        id: 29,
-        name: "Ceremonial Grade First-Harvest Matcha (50g)",
-        description: "Authentic Japanese single-origin shade-grown green tea ground to micro-fine powder with rich umami and vibrant emerald hue.",
-        price: 899.00,
-        category: "Groceries & Snacks",
-        imageUrl: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=700&q=80",
-        stock: 75,
-        rating: 4.9,
-        reviewsCount: 190,
-        badge: "Superfood"
-    },
-    {
-        id: 30,
-        name: "Single-Origin 72% Dark Chocolate Almond Bark",
-        description: "Stone-ground artisan Ecuadorian dark chocolate studded with slow-roasted California almonds and flaky sea salt crystals.",
-        price: 449.00,
-        category: "Groceries & Snacks",
-        imageUrl: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=700&q=80",
-        stock: 100,
-        rating: 4.8,
-        reviewsCount: 215,
-        badge: "Artisan"
-    },
-
-    // 8. BOOKS
-    {
-        id: 31,
         name: "Mastering Java & Spring Boot",
         description: "Comprehensive masterclass from core modern Java 21 concepts through robust Spring Boot microservices.",
         price: 599.00,
@@ -391,7 +112,19 @@ const FALLBACK_PRODUCTS = [
         badge: "Bestseller"
     },
     {
-        id: 32,
+        id: 10,
+        name: "The Art of C Programming",
+        description: "From foundational memory pointers to advanced systems programming and embedded architectures.",
+        price: 499.00,
+        category: "Books",
+        imageUrl: "https://images.unsplash.com/photo-1532012164546-f432f2e3777f?auto=format&fit=crop&w=700&q=80",
+        stock: 50,
+        rating: 4.7,
+        reviewsCount: 145,
+        badge: "Classic"
+    },
+    {
+        id: 11,
         name: "Python For Data Science & AI",
         description: "Hands-on guide covering NumPy, Pandas, Scikit-Learn, neural networks, and modern LLM application workflows.",
         price: 699.00,
@@ -401,19 +134,44 @@ const FALLBACK_PRODUCTS = [
         rating: 4.8,
         reviewsCount: 260,
         badge: "Top Rated"
+    },
+    {
+        id: 12,
+        name: "Data Structures & Algorithms Made Easy",
+        description: "In-depth problem-solving patterns, tree traversals, dynamic programming, and FAANG interview readiness.",
+        price: 749.00,
+        category: "Books",
+        imageUrl: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=700&q=80",
+        stock: 65,
+        rating: 4.9,
+        reviewsCount: 412,
+        badge: "Must Read"
+    },
+    {
+        id: 13,
+        name: "Computer Networks & Distributed Systems",
+        description: "Thorough exploration of modern TCP/IP, HTTP/3, WebSocket protocols, cloud routing, and cyber defenses.",
+        price: 799.00,
+        category: "Books",
+        imageUrl: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=700&q=80",
+        stock: 40,
+        rating: 4.6,
+        reviewsCount: 118,
+        badge: "Academic"
+    },
+    {
+        id: 14,
+        name: "The Midnight Chronicle: Best-Selling Novel",
+        description: "An enchanting, award-winning international fiction bestseller about second chances, parallel lives, and hope.",
+        price: 399.00,
+        category: "Books",
+        imageUrl: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=700&q=80",
+        stock: 80,
+        rating: 4.7,
+        reviewsCount: 340,
+        badge: "Staff Pick"
     }
 ];
-
-const CATEGORY_ICONS = {
-    'Electronics': '📱',
-    'Home Decor': '🏠',
-    'Fitness': '🏋️',
-    'Kitchen & Baking': '🍳',
-    'Beauty & Makeup': '💄',
-    'Apparel & Fashion': '👗',
-    'Groceries & Snacks': '🥨',
-    'Books': '📚'
-};
 
 // App State
 let state = {
@@ -595,7 +353,7 @@ function renderProductsGrid(items) {
     }
 
     grid.innerHTML = items.map(product => {
-        const categoryIcon = CATEGORY_ICONS[product.category] || '✨';
+        const categoryIcon = product.category === 'Electronics' ? '📱' : '📚';
         const formattedPrice = Number(product.price).toLocaleString('en-IN');
         const badgeHtml = product.badge ? `<span class="product-badge-tag">${product.badge}</span>` : '';
 
@@ -731,7 +489,7 @@ function updateCartUI() {
             <div style="text-align:center; padding: 60px 20px; color: var(--text-muted);">
                 <div style="font-size: 3rem; margin-bottom: 12px;">🛒</div>
                 <h4 style="color:var(--text-primary); margin-bottom: 6px;">Your cart is empty</h4>
-                <p style="font-size: 0.9rem;">Add items from any category to get started.</p>
+                <p style="font-size: 0.9rem;">Add items from Electronics or Books to get started.</p>
             </div>
         `;
         if (subtotalEl) subtotalEl.textContent = '₹0';
@@ -799,11 +557,12 @@ function openCheckoutModal() {
         return;
     }
 
-    toggleCart();
+    toggleCart(); // close cart drawer
 
     const modal = document.getElementById('checkout-modal');
     const backdrop = document.getElementById('checkout-backdrop');
 
+    // Pre-fill user info if logged in
     if (state.user) {
         const nameInput = document.getElementById('checkout-name');
         const emailInput = document.getElementById('checkout-email');
@@ -811,6 +570,7 @@ function openCheckoutModal() {
         if (emailInput) emailInput.value = state.user.email || '';
     }
 
+    // Update order summary in checkout
     const subtotal = state.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     const shippingFee = subtotal >= 999 ? 0 : 99;
     const total = subtotal + shippingFee;
@@ -876,6 +636,7 @@ async function handleCheckoutSubmit(e) {
         console.warn('Backend order API offline, logged locally:', err);
     }
 
+    // Save order in client history as well
     const clientOrder = {
         id: orderSuccessId,
         date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
@@ -892,10 +653,12 @@ async function handleCheckoutSubmit(e) {
     pastOrders.unshift(clientOrder);
     localStorage.setItem('indirahub_orders', JSON.stringify(pastOrders));
 
+    // Clear cart
     state.cart = [];
     saveCart();
     updateCartUI();
 
+    // Show confirmation inside modal
     const modalBody = document.querySelector('#checkout-modal .modal-body');
     if (modalBody) {
         modalBody.innerHTML = `
@@ -903,7 +666,7 @@ async function handleCheckoutSubmit(e) {
                 <div class="success-icon-badge">✓</div>
                 <h3 style="font-size:1.6rem; font-family:var(--font-heading); margin-bottom:8px;">Order Confirmed!</h3>
                 <p style="color:var(--text-secondary); font-size:0.95rem;">
-                    Thank you, <strong>${name}</strong>! Your order has been placed and is being packed.
+                    Thank you, <strong>${name}</strong>! Your order has been placed and is being prepared for dispatch.
                 </p>
                 <div class="order-badge-id">${orderSuccessId}</div>
                 <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:16px; margin-bottom:24px; text-align:left;">
@@ -928,6 +691,7 @@ async function openOrdersModal() {
 
     let orders = JSON.parse(localStorage.getItem('indirahub_orders') || '[]');
 
+    // Try fetching from backend if user email is available
     if (state.user && state.user.email) {
         try {
             const res = await fetch(`/api/orders?email=${encodeURIComponent(state.user.email)}`);
@@ -998,8 +762,8 @@ function closeOrdersModal() {
     if (backdrop) backdrop.classList.remove('open');
 }
 
-// Quick View Modal with Reviews & Ratings
-async function openQuickView(productId) {
+// Quick View Modal
+function openQuickView(productId) {
     const product = state.products.find(p => p.id === productId);
     if (!product) return;
 
@@ -1007,30 +771,17 @@ async function openQuickView(productId) {
     const backdrop = document.getElementById('quickview-backdrop');
     const body = document.getElementById('quickview-body');
 
-    const catIcon = CATEGORY_ICONS[product.category] || '✨';
-
-    // Fetch live reviews from backend
-    let reviewsList = [];
-    try {
-        const res = await fetch(`/api/products/${productId}/reviews`);
-        if (res.ok) {
-            reviewsList = await res.json();
-        }
-    } catch (e) {
-        console.warn('Reviews API offline:', e);
-    }
-
     if (body) {
         body.innerHTML = `
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px;">
                 <img src="${product.imageUrl}" alt="${product.name}" style="width:100%; height:260px; object-fit:cover; border-radius:var(--radius-md); border:1px solid var(--border-color);">
                 <div style="display:flex; flex-direction:column; justify-content:space-between;">
                     <div>
-                        <span style="text-transform:uppercase; font-size:0.75rem; font-weight:700; color:var(--primary-light);">${catIcon} ${product.category}</span>
+                        <span style="text-transform:uppercase; font-size:0.75rem; font-weight:700; color:var(--primary-light);">${product.category}</span>
                         <h3 style="font-family:var(--font-heading); font-size:1.35rem; margin:6px 0 10px;">${product.name}</h3>
                         <p style="color:var(--text-secondary); font-size:0.9rem; line-height:1.5; margin-bottom:14px;">${product.description}</p>
                         <div style="font-size:0.88rem; color:var(--accent-amber); font-weight:700; margin-bottom:12px;">
-                            ★ ${product.rating || 4.8} / 5.0 (${product.reviewsCount || 0} reviews)
+                            ★ ${product.rating || 4.8} / 5.0 (${product.reviewsCount || 100} verified reviews)
                         </div>
                     </div>
                     <div>
@@ -1043,47 +794,6 @@ async function openQuickView(productId) {
                     </div>
                 </div>
             </div>
-
-            <!-- Customer Reviews Section -->
-            <div class="reviews-section">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-                    <h4 style="font-family:var(--font-heading); font-size:1.1rem;">Customer Ratings & Reviews (${reviewsList.length})</h4>
-                    <span style="color:var(--accent-amber); font-weight:700;">Average ★ ${product.rating || 4.8}</span>
-                </div>
-
-                <!-- Existing Reviews -->
-                <div id="reviews-container-${productId}">
-                    ${reviewsList.length === 0 ? '<p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:16px;">No customer reviews yet. Be the first to share your thoughts!</p>' : reviewsList.map(r => `
-                        <div class="review-item">
-                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                                <strong style="font-size:0.9rem; color:var(--text-primary);">${r.reviewerName || 'Verified Buyer'}</strong>
-                                <span style="color:var(--accent-amber); font-size:0.85rem;">${'★'.repeat(r.rating || 5)}${'☆'.repeat(5 - (r.rating || 5))}</span>
-                            </div>
-                            <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">${r.comment}</p>
-                        </div>
-                    `).join('')}
-                </div>
-
-                <!-- Write a Review Form -->
-                <form id="write-review-form" onsubmit="handleReviewSubmit(event, ${productId})" style="background:rgba(255,255,255,0.03); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:16px; margin-top:16px;">
-                    <div style="font-weight:700; font-size:0.95rem; margin-bottom:10px;">Leave Your Review</div>
-                    
-                    <div style="display:flex; gap:12px; margin-bottom:10px;">
-                        <input type="text" id="review-name" class="form-input" style="padding:8px 12px; font-size:0.85rem;" placeholder="Your Name" required value="${state.user ? (state.user.fullName || state.user.username) : ''}">
-                        <select id="review-rating" class="form-select" style="padding:8px 12px; font-size:0.85rem; max-width:140px;">
-                            <option value="5">★★★★★ (5/5)</option>
-                            <option value="4">★★★★☆ (4/5)</option>
-                            <option value="3">★★★☆☆ (3/5)</option>
-                            <option value="2">★★☆☆☆ (2/5)</option>
-                            <option value="1">★☆☆☆☆ (1/5)</option>
-                        </select>
-                    </div>
-
-                    <textarea id="review-comment" class="form-textarea" rows="2" style="padding:8px 12px; font-size:0.85rem; margin-bottom:10px;" placeholder="Write your feedback regarding build quality, packaging, delivery..." required></textarea>
-                    
-                    <button type="submit" class="btn-primary" style="padding:8px 16px; font-size:0.85rem;">Submit Review</button>
-                </form>
-            </div>
         `;
     }
 
@@ -1091,147 +801,11 @@ async function openQuickView(productId) {
     if (backdrop) backdrop.classList.add('open');
 }
 
-async function handleReviewSubmit(e, productId) {
-    e.preventDefault();
-    const name = document.getElementById('review-name').value.trim();
-    const rating = parseInt(document.getElementById('review-rating').value);
-    const comment = document.getElementById('review-comment').value.trim();
-
-    if (!name || !comment) return;
-
-    try {
-        const res = await fetch(`/api/products/${productId}/reviews`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ reviewerName: name, reviewerEmail: state.user ? state.user.email : '', rating, comment })
-        });
-        if (res.ok) {
-            showToast('Review submitted successfully! Thank you.', 'success');
-            openQuickView(productId); // reload view
-            loadProducts(); // update rating in catalog
-        } else {
-            showToast('Failed to submit review.', 'error');
-        }
-    } catch (err) {
-        showToast('Review saved locally in preview.', 'success');
-    }
-}
-
 function closeQuickView() {
     const modal = document.getElementById('quickview-modal');
     const backdrop = document.getElementById('quickview-backdrop');
     if (modal) modal.classList.remove('open');
     if (backdrop) backdrop.classList.remove('open');
-}
-
-// AI Chatbot Logic (IndiraBot)
-function toggleChatbot() {
-    const chatWin = document.getElementById('chatbot-window');
-    if (chatWin) {
-        chatWin.classList.toggle('open');
-        if (chatWin.classList.contains('open')) {
-            const input = document.getElementById('chat-input');
-            if (input) input.focus();
-        }
-    }
-}
-
-function sendChatPrompt(promptText) {
-    const input = document.getElementById('chat-input');
-    if (input) {
-        input.value = promptText;
-        handleChatSubmit(new Event('submit'));
-    }
-}
-
-async function handleChatSubmit(e) {
-    if (e) e.preventDefault();
-    const input = document.getElementById('chat-input');
-    const chatContainer = document.getElementById('chat-messages');
-    if (!input || !chatContainer) return;
-
-    const userText = input.value.trim();
-    if (!userText) return;
-
-    // Append user message
-    const userMsgEl = document.createElement('div');
-    userMsgEl.className = 'chat-msg user';
-    userMsgEl.textContent = userText;
-    chatContainer.appendChild(userMsgEl);
-    input.value = '';
-    chatContainer.scrollTop = chatContainer.scrollHeight;
-
-    // Typing indicator
-    const typingEl = document.createElement('div');
-    typingEl.className = 'chat-msg bot';
-    typingEl.id = 'chat-typing-indicator';
-    typingEl.innerHTML = '<em>IndiraBot is typing...</em>';
-    chatContainer.appendChild(typingEl);
-    chatContainer.scrollTop = chatContainer.scrollHeight;
-
-    try {
-        const res = await fetch('/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                message: userText,
-                userEmail: state.user ? state.user.email : ''
-            })
-        });
-
-        if (res.ok) {
-            const data = await res.json();
-            typingEl.remove();
-
-            const botMsgEl = document.createElement('div');
-            botMsgEl.className = 'chat-msg bot';
-
-            let botHtml = data.reply.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
-
-            if (data.recommendedProducts && data.recommendedProducts.length > 0) {
-                botHtml += '<div style="margin-top:10px; display:flex; flex-direction:column; gap:6px;">';
-                data.recommendedProducts.forEach(p => {
-                    botHtml += `
-                        <div style="background:rgba(255,255,255,0.05); padding:8px 10px; border-radius:6px; display:flex; justify-content:space-between; align-items:center;">
-                            <div>
-                                <strong style="font-size:0.82rem;">${p.name}</strong><br>
-                                <span style="color:var(--accent-emerald); font-weight:700; font-size:0.8rem;">₹${Number(p.price).toLocaleString('en-IN')}</span>
-                            </div>
-                            <button class="btn-primary" style="padding:4px 8px; font-size:0.75rem;" onclick="addToCart(${p.id})">+ Add</button>
-                        </div>
-                    `;
-                });
-                botHtml += '</div>';
-            }
-
-            botMsgEl.innerHTML = botHtml;
-            chatContainer.appendChild(botMsgEl);
-
-            // Update suggestions if provided
-            if (data.suggestions && data.suggestions.length > 0) {
-                const suggBox = document.querySelector('.chat-suggestions');
-                if (suggBox) {
-                    suggBox.innerHTML = data.suggestions.map(s => `
-                        <button class="chat-chip" onclick="sendChatPrompt('${s.replace(/'/g, "\\'")}')">${s}</button>
-                    `).join('');
-                }
-            }
-        } else {
-            typingEl.remove();
-            const fallbackBot = document.createElement('div');
-            fallbackBot.className = 'chat-msg bot';
-            fallbackBot.textContent = 'I am currently unable to reach the server, but you can explore our categories or check shipping above!';
-            chatContainer.appendChild(fallbackBot);
-        }
-    } catch (err) {
-        typingEl.remove();
-        const fallbackBot = document.createElement('div');
-        fallbackBot.className = 'chat-msg bot';
-        fallbackBot.textContent = 'I am here to assist you! Feel free to ask about any products in Electronics, Home Decor, Fitness, Kitchen, Beauty, Fashion, or Snacks.';
-        chatContainer.appendChild(fallbackBot);
-    }
-
-    chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
 // Toast System
@@ -1263,3 +837,17 @@ function showToast(message, type = 'success') {
     }, 3200);
 }
 
+// QR Code Modal Functions
+function openQrModal() {
+    const modal = document.getElementById('qr-modal');
+    const backdrop = document.getElementById('qr-modal-backdrop');
+    if (modal) modal.classList.add('open');
+    if (backdrop) backdrop.classList.add('open');
+}
+
+function closeQrModal() {
+    const modal = document.getElementById('qr-modal');
+    const backdrop = document.getElementById('qr-modal-backdrop');
+    if (modal) modal.classList.remove('open');
+    if (backdrop) backdrop.classList.remove('open');
+}

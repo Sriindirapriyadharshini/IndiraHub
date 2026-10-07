@@ -39,8 +39,12 @@
 
             <!-- Header Actions -->
             <div class="header-actions">
-                <a href="admin.html" class="btn-icon" style="color:#fbbf24; border-color:rgba(245,158,11,0.3)" title="Seller Inventory & Orders Portal">
-                    <span>⚡ Seller Portal</span>
+                <button class="btn-icon" onclick="openQrModal()" title="Scan QR Code to open on Mobile" style="color:var(--primary-light); border-color:var(--border-color);">
+                    <span>📱 Scan QR</span>
+                </button>
+
+                <a href="admin.html" class="btn-icon" style="color:var(--accent-magenta); border-color:rgba(217,70,239,0.3)" title="Admin Control Center (Restricted)">
+                    <span>🔐 Admin Hub</span>
                 </a>
 
                 <button class="btn-icon" id="cart-toggle-btn" onclick="toggleCart()" aria-label="Shopping Cart">
@@ -379,7 +383,7 @@
                     <li><a href="/h2-console" target="_blank">H2 Database Console</a></li>
                     <li><a href="/api/products" target="_blank">REST API (/api/products)</a></li>
                     <li><a href="/api/orders" target="_blank">Orders API (/api/orders)</a></li>
-                    <li><a href="admin.html" style="color:#fbbf24; font-weight:700;">Seller & Admin Portal ⚡</a></li>
+                    <li><a href="admin.html" style="color:var(--primary-light); font-weight:700;">Admin Control Hub 🔐</a></li>
                     <li><a href="login.html">Demo Accounts</a></li>
                 </ul>
             </div>
@@ -429,6 +433,28 @@
             <input type="text" id="chat-input" class="chat-input" placeholder="Ask about products, orders, shipping..." autocomplete="off">
             <button type="submit" class="chat-send-btn">➤</button>
         </form>
+    </div>
+
+    <!-- QR CODE POPUP MODAL -->
+    <div id="qr-modal-backdrop" class="modal-backdrop" onclick="closeQrModal()"></div>
+    <div id="qr-modal" class="modal-backdrop">
+        <div class="modal-content" style="max-width:380px; text-align:center; padding:32px 24px; border:1px solid var(--border-glow); box-shadow:var(--shadow-elevated);" onclick="event.stopPropagation()">
+            <div class="modal-header" style="justify-content:center; position:relative; margin-bottom:20px;">
+                <h3 style="font-family:var(--font-heading); font-size:1.35rem; color:var(--text-primary);">📱 Scan to Visit IndiraHub</h3>
+                <button class="close-btn" style="position:absolute; right:0; top:0;" onclick="closeQrModal()">✕</button>
+            </div>
+            <div class="modal-body" style="padding:0;">
+                <div style="background:#ffffff; padding:18px; border-radius:18px; display:inline-block; box-shadow:var(--shadow-glow); border:2px solid var(--primary-light);">
+                    <img src="qrcode.svg" alt="IndiraHub QR Code" style="width:210px; height:210px; display:block;">
+                </div>
+                <h4 style="margin-top:18px; font-weight:700; color:var(--text-primary); font-size:1.05rem;">Quick Mobile Access</h4>
+                <p style="color:var(--text-secondary); font-size:0.86rem; margin-top:6px; line-height:1.5;">Scan with your smartphone camera to browse the store, shop electronics & books, or track your live orders anywhere.</p>
+                <div style="margin-top:20px; display:flex; gap:10px; justify-content:center;">
+                    <a href="qrcode.png" download="IndiraHub_QR.png" class="btn-primary" style="font-size:0.85rem; padding:8px 16px; text-decoration:none;">⬇️ Download QR (PNG)</a>
+                    <a href="qrcode.svg" download="IndiraHub_QR.svg" class="btn-outline" style="font-size:0.85rem; padding:8px 14px; text-decoration:none;">SVG</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
