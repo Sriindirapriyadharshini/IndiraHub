@@ -239,6 +239,16 @@ function setupEventListeners() {
     });
 }
 
+function triggerSearch() {
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        state.searchQuery = searchInput.value.toLowerCase().trim();
+        filterAndRenderProducts();
+        const catalogSection = document.getElementById('catalog-section');
+        if (catalogSection) catalogSection.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
 // Authentication & Header UI
 function initAuthUI() {
     const authContainer = document.getElementById('auth-nav-container');
@@ -246,10 +256,11 @@ function initAuthUI() {
 
     if (state.user) {
         const initial = state.user.fullName ? state.user.fullName.charAt(0).toUpperCase() : 'U';
+        const isAdmin = state.user.role === 'ADMIN';
         authContainer.innerHTML = `
             <div class="user-badge" title="Logged in as ${state.user.email || state.user.username}">
                 <div class="user-avatar">${initial}</div>
-                <span>Hi, ${state.user.fullName || state.user.username}</span>
+                <span>Hi, ${state.user.fullName || state.user.username}${isAdmin ? ' 👑' : ''}</span>
             </div>
             <button class="btn-icon" onclick="openOrdersModal()" title="View your past orders">
                 📦 Orders
@@ -353,9 +364,20 @@ function renderProductsGrid(items) {
     }
 
     grid.innerHTML = items.map(product => {
-        const categoryIcon = product.category === 'Electronics' ? '📱' : '📚';
+        const categoryIcon = product.category === 'Electronics' ? '📱' : (product.category === 'Books' ? '📚' : '✨');
         const formattedPrice = Number(product.price).toLocaleString('en-IN');
-        const badgeHtml = product.badge ? `<span class="product-badge-tag">${product.badge}</span>` : '';
+        
+        // High-urgency contextual badges
+        let badgeClass = 'badge-tag';
+        if (product.badge) {
+            const b = product.badge.toLowerCase();
+            if (b.includes('hot') || b.includes('deal') || b.includes('sale') || b.includes('urgent')) {
+                badgeClass = 'badge-hot';
+            } else if (b.includes('bestseller') || b.includes('top') || b.includes('popular') || b.includes('trending')) {
+                badgeClass = 'badge-bestseller';
+            }
+        }
+        const badgeHtml = product.badge ? `<span class="product-badge-tag ${badgeClass}">${product.badge}</span>` : '';
 
         return `
             <div class="product-card" id="product-${product.id}">

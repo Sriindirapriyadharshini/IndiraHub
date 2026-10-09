@@ -16,10 +16,6 @@
 </head>
 <body>
 
-    <!-- Ambient Lighting Effects -->
-    <div class="ambient-glow"></div>
-    <div class="ambient-glow-2"></div>
-
     <!-- HEADER / NAVIGATION -->
     <header class="app-header">
         <div class="header-container">
@@ -28,19 +24,20 @@
                 <div>
                     <span class="gradient-text">IndiraHub</span>
                 </div>
-                <span class="brand-tag">PRO</span>
+                <span class="brand-tag">MARKETPLACE</span>
             </a>
 
             <!-- Search Bar -->
             <div class="search-container">
                 <span class="search-icon">🔍</span>
                 <input type="text" id="search-input" class="search-input" placeholder="Search laptops, smartphones, books, headphones..." autocomplete="off">
+                <button class="search-submit-btn" onclick="triggerSearch()" aria-label="Search" style="position:absolute; right:2px; top:2px; bottom:2px; width:44px; background:#FF9900; border:none; border-radius:0 var(--radius-sm) var(--radius-sm) 0; color:#111827; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1rem; font-weight:bold;">🔍</button>
             </div>
 
             <!-- Header Actions -->
             <div class="header-actions">
-                <a href="admin.html" class="btn-icon" style="color:#fbbf24; border-color:rgba(245,158,11,0.3)" title="Seller Inventory & Orders Portal">
-                    <span>⚡ Seller Portal</span>
+                <a href="admin.html" class="btn-icon header-admin-link" title="Admin Control Center (Restricted to Administrators)">
+                    <span>🔐 Admin Hub</span>
                 </a>
 
                 <button class="btn-icon" id="cart-toggle-btn" onclick="toggleCart()" aria-label="Shopping Cart">
@@ -66,7 +63,7 @@
                         <span>✨ New Spring 2026 Collection</span>
                     </div>
                     <h1 class="hero-title">
-                        Your Modern Tech, Home & <span class="gradient-text" style="background:linear-gradient(135deg, #818cf8 0%, #34d399 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Lifestyle</span> Superstore
+                        Your Modern Tech, Home & <span class="gradient-text" style="color: #FF9900; background: none; -webkit-text-fill-color: initial;">Lifestyle</span> Superstore
                     </h1>
                     <p class="hero-description">
                         Discover top-tier electronics, modern home decor, fitness gear, gourmet kitchenware, beauty essentials, apparel, and healthy snacks.
