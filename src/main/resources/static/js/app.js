@@ -873,3 +873,334 @@ function closeQrModal() {
     if (modal) modal.classList.remove('open');
     if (backdrop) backdrop.classList.remove('open');
 }
+
+// ==========================================================================
+// AI Chatbot Logic (IndiraBot)
+// ==========================================================================
+
+function toggleChatbot() {
+    const chatWin = document.getElementById('chatbot-window');
+    if (chatWin) {
+        chatWin.classList.toggle('open');
+        if (chatWin.classList.contains('open')) {
+            const input = document.getElementById('chat-input');
+            if (input) {
+                setTimeout(() => input.focus(), 150);
+            }
+            const chatContainer = document.getElementById('chat-messages');
+            if (chatContainer) chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+    }
+}
+
+function sendChatPrompt(promptText) {
+    const input = document.getElementById('chat-input');
+    if (input) {
+        input.value = promptText;
+        handleChatSubmit(new Event('submit'));
+    }
+}
+
+// Client-side intelligent assistant fallback when server endpoint is offline / unreachable
+function generateOfflineBotResponse(userText) {
+    const msg = (userText || '').trim().toLowerCase();
+    let reply = "";
+    let suggestions = [];
+    let recommendedProducts = [];
+
+    // Catalog items source (current loaded state or fallback)
+    const catalog = (state.products && state.products.length > 0) ? state.products : FALLBACK_PRODUCTS;
+
+    // 1. Greetings
+    if (!msg || msg === 'hi' || msg === 'hello' || msg === 'hey' || msg.startsWith('hi ') || msg.startsWith('hello ')
+        || msg.includes('namaste') || msg.includes('vanakkam') || msg.includes('good morning') || msg.includes('good evening') || msg === 'start') {
+        reply = "👋 Hello! Welcome to **IndiraHub**! I am **IndiraBot**, your shopping assistant. How can I help you today? You can explore electronics, books, check shipping rules, or track your orders!";
+        suggestions = ["💻 Recommend Laptop", "📱 Electronics", "🚚 Free Shipping", "📦 Track Order"];
+        return { reply, suggestions, recommendedProducts };
+    }
+
+    // 2. Identity & Help
+    if (msg.includes('who are you') || msg.includes('what can you do') || msg === 'help' || msg.includes('about you') || msg.includes('bot')) {
+        reply = "🤖 I am **IndiraBot**, IndiraHub's AI shopping assistant!\n\n"
+              + "• 🔍 **Search & Recommend**: Ask about laptops, phones, headphones, books, etc.\n"
+              + "• 📦 **Track Orders**: Type your Order ID (e.g., 'Track order 1')\n"
+              + "• 🚚 **Shipping & Delivery**: Learn about shipping costs and delivery times\n"
+              + "• 💳 **Payment & Offers**: Ask about UPI, cards, COD, or discount coupon `INDIRA10`\n"
+              + "• 🛡️ **Returns**: 7-day hassle-free replacement on eligible items";
+        suggestions = ["Show Electronics", "Track Order", "Free Shipping", "Payment Methods"];
+        return { reply, suggestions, recommendedProducts };
+    }
+
+    // 3. Thank you / Bye
+    if (msg.includes('thank') || msg === 'bye' || msg.includes('goodbye') || msg === 'ok' || msg === 'okay') {
+        reply = "You're very welcome! If you need anything else, just ask. Happy shopping at **IndiraHub**! 🛍️✨";
+        suggestions = ["Browse Electronics", "Browse Books", "Track Order"];
+        return { reply, suggestions, recommendedProducts };
+    }
+
+    // 4. Order Tracking
+    if (msg.includes('track') || msg.includes('order') || msg.includes('status')) {
+        const match = msg.match(/\d+/);
+        const savedOrders = JSON.parse(localStorage.getItem('indirahub_orders') || '[]');
+
+        if (match) {
+            const orderId = match[0];
+            const found = savedOrders.find(o => String(o.id) === orderId || String(o.id) === '#' + orderId);
+            if (found) {
+                reply = `📦 **Order ${found.id} Status**: **${found.status || 'CONFIRMED'}**\n\n`
+                      + `• Customer: ${found.customerName || (state.user ? (state.user.fullName || state.user.username) : 'Customer')}\n`
+                      + `• Total: ₹${Number(found.total || 0).toLocaleString('en-IN')}\n`
+                      + `• Payment: ${found.paymentMethod || 'COD'}\n`
+                      + `• Date: ${found.date || 'Recent'}\n`
+                      + `• Destination: ${found.shippingAddress || 'Registered Address'}`;
+                suggestions = ["Shop more items", "Contact Support", "Check Shipping"];
+                return { reply, suggestions, recommendedProducts };
+            } else if (orderId === '1' || orderId === '101') {
+                reply = `📦 **Order #${orderId} Status**: **OUT FOR DELIVERY** 🚚\n\n`
+                      + `• Carrier: BlueDart Express\n`
+                      + `• Estimated Delivery: Today by 7:00 PM\n`
+                      + `• Destination: IndiraHub Registered Hub`;
+                suggestions = ["Browse Electronics", "Contact Support", "Shipping Policy"];
+                return { reply, suggestions, recommendedProducts };
+            } else {
+                reply = `❌ Order **#${orderId}** was not found in your orders. Please verify your Order ID or view your past orders in the top navigation!`;
+                suggestions = ["Track order 1", "Free Shipping", "Browse Catalog"];
+                return { reply, suggestions, recommendedProducts };
+            }
+        }
+
+        if (savedOrders.length > 0) {
+            const latest = savedOrders[0];
+            reply = `📦 Found your latest order **${latest.id}** with status **${latest.status || 'CONFIRMED'}** (Total: ₹${Number(latest.total || 0).toLocaleString('en-IN')}).`;
+            suggestions = ["View order details", "Browse new arrivals", "Track order 1"];
+            return { reply, suggestions, recommendedProducts };
+        }
+
+        reply = "To track an order, please specify your Order ID (e.g., 'Track order 1') or place a demo order to test tracking!";
+        suggestions = ["Track order 1", "Free Shipping", "Show Electronics"];
+        return { reply, suggestions, recommendedProducts };
+    }
+
+    // 5. Shipping & Delivery
+    if (msg.includes('shipping') || msg.includes('delivery') || msg.includes('dispatch') || msg.includes('charge') || msg.includes('courier')) {
+        reply = "🚚 **IndiraHub Shipping Policy**:\n\n"
+              + "• **FREE Delivery** on all orders of ₹999 and above.\n"
+              + "• A flat delivery fee of ₹99 applies to orders under ₹999.\n"
+              + "• **Express Dispatch**: Same-day dispatch with 2-4 business days express delivery across India.\n"
+              + "• Real-time parcel tracking provided on every shipment.";
+        suggestions = ["Show Electronics", "Show Books", "Payment Methods"];
+        return { reply, suggestions, recommendedProducts };
+    }
+
+    // 6. Returns & Warranty
+    if (msg.includes('return') || msg.includes('refund') || msg.includes('exchange') || msg.includes('warranty') || msg.includes('replace')) {
+        reply = "🛡️ **Warranty & Returns**:\n\n"
+              + "• **7-Day Replacement**: Hassle-free replacement on any defective or damaged items.\n"
+              + "• **100% Genuine Brand Warranty**: Official manufacturer warranty on all electronics.\n"
+              + "• **Doorstep Pickup**: Convenient reverse logistics arranged right from your address.\n"
+              + "• **Prompt Refunds**: Refund issued within 24-48 hours of inspection approval.";
+        suggestions = ["Browse Electronics", "Contact Support", "Track Order"];
+        return { reply, suggestions, recommendedProducts };
+    }
+
+    // 7. Payment Methods
+    if (msg.includes('payment') || msg.includes('upi') || msg.includes('cod') || msg.includes('pay') || msg.includes('card') || msg.includes('google pay') || msg.includes('phonepe')) {
+        reply = "💳 We support multiple secure payment options:\n\n"
+              + "• **UPI & QR Code** (Google Pay, PhonePe, Paytm, BHIM)\n"
+              + "• **Cash on Delivery (COD)** on eligible PIN codes\n"
+              + "• **Credit & Debit Cards** (Visa, MasterCard, RuPay)\n"
+              + "• **Net Banking** from all major Indian banks\n"
+              + "• 256-bit SSL encryption for 100% secure checkout.";
+        suggestions = ["Browse Catalog", "Check Shipping", "Track Order"];
+        return { reply, suggestions, recommendedProducts };
+    }
+
+    // 8. Offers & Discounts
+    if (msg.includes('offer') || msg.includes('discount') || msg.includes('coupon') || msg.includes('deal') || msg.includes('promo') || msg.includes('sale')) {
+        reply = "🎉 **Current IndiraHub Promotions**:\n\n"
+              + "• **Coupon Code `INDIRA10`**: Extra 10% instant discount on orders above ₹1,499!\n"
+              + "• **Super Electronics Deal**: Up to 40% OFF on laptops, audio gear, and accessories.\n"
+              + "• **Free Shipping**: Automatically applied when your cart exceeds ₹999.";
+        suggestions = ["Show Electronics", "Show Books", "Payment Methods"];
+        return { reply, suggestions, recommendedProducts };
+    }
+
+    // 9. Contact & Support
+    if (msg.includes('contact') || msg.includes('customer care') || msg.includes('support') || msg.includes('helpline') || msg.includes('email') || msg.includes('phone')) {
+        reply = "📞 **IndiraHub Customer Support**:\n\n"
+              + "• **Email**: support@indirahub.com\n"
+              + "• **Toll-Free Helpline**: 1800-123-4567 (Mon-Sat, 9:00 AM - 8:00 PM IST)\n"
+              + "• **Live Chat**: IndiraBot is active 24/7 right here to guide your shopping journey!";
+        suggestions = ["Track an Order", "Shipping Info", "Browse Catalog"];
+        return { reply, suggestions, recommendedProducts };
+    }
+
+    // 10. Price-based filtering (e.g. "under 50000", "under 1000", "under 2000")
+    const priceMatch = msg.match(/under\s+(\d+)/);
+    if (priceMatch) {
+        const maxPrice = parseFloat(priceMatch[1]);
+        const cheap = catalog.filter(p => p.price <= maxPrice).slice(0, 4);
+        if (cheap.length > 0) {
+            reply = `Here are top items available under **₹${maxPrice.toLocaleString('en-IN')}**:`;
+            recommendedProducts = cheap;
+            suggestions = ["Show Electronics", "Show Books", "Shipping Info"];
+            return { reply, suggestions, recommendedProducts };
+        }
+    }
+
+    // 11. Category recommendations
+    let targetCat = null;
+    if (msg.includes('electronic') || msg.includes('laptop') || msg.includes('phone') || msg.includes('headphone') || msg.includes('monitor') || msg.includes('keyboard') || msg.includes('mouse')) {
+        targetCat = 'Electronics';
+    } else if (msg.includes('book') || msg.includes('read') || msg.includes('java') || msg.includes('python') || msg.includes('programming') || msg.includes('algorithm')) {
+        targetCat = 'Books';
+    } else if (msg.includes('home') || msg.includes('decor') || msg.includes('lamp') || msg.includes('chair')) {
+        targetCat = 'Home Decor';
+    } else if (msg.includes('fitness') || msg.includes('gym') || msg.includes('dumbbell') || msg.includes('workout')) {
+        targetCat = 'Fitness';
+    } else if (msg.includes('kitchen') || msg.includes('cook') || msg.includes('bake') || msg.includes('oven')) {
+        targetCat = 'Kitchen & Baking';
+    } else if (msg.includes('beauty') || msg.includes('makeup') || msg.includes('skin')) {
+        targetCat = 'Beauty & Makeup';
+    } else if (msg.includes('fashion') || msg.includes('cloth') || msg.includes('hoodie') || msg.includes('apparel')) {
+        targetCat = 'Apparel & Fashion';
+    } else if (msg.includes('snack') || msg.includes('grocery') || msg.includes('food')) {
+        targetCat = 'Groceries & Snacks';
+    }
+
+    if (targetCat) {
+        recommendedProducts = catalog.filter(p => p.category.toLowerCase() === targetCat.toLowerCase()).slice(0, 4);
+        reply = `Here are top recommendations from our **${targetCat}** collection:`;
+        suggestions = ["Show another category", "Shipping details", "Payment Methods"];
+        return { reply, suggestions, recommendedProducts };
+    }
+
+    // 12. Keyword search across catalog
+    if (msg.length >= 3) {
+        const matches = catalog.filter(p =>
+            p.name.toLowerCase().includes(msg) ||
+            p.description.toLowerCase().includes(msg) ||
+            p.category.toLowerCase().includes(msg)
+        ).slice(0, 4);
+
+        if (matches.length > 0) {
+            reply = `I found ${matches.length} matching items for '${userText}':`;
+            recommendedProducts = matches;
+            suggestions = ["Show All Items", "Shipping Policy", "Track Order"];
+            return { reply, suggestions, recommendedProducts };
+        }
+    }
+
+    reply = "I couldn't find a direct match, but IndiraHub carries a wide selection in Electronics, Books, Fashion, Home Decor, Fitness, Kitchen, Beauty, and Groceries. What can I explore for you?";
+    suggestions = ["📱 Electronics", "📚 Books", "🏋️ Fitness", "🚚 Free Shipping"];
+    return { reply, suggestions, recommendedProducts };
+}
+
+// Render Bot Message Bubble with formatting & product cards
+function renderBotMessage(chatContainer, data) {
+    const botMsgEl = document.createElement('div');
+    botMsgEl.className = 'chat-msg bot';
+
+    let botHtml = (data.reply || '')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\n/g, '<br>');
+
+    if (data.recommendedProducts && data.recommendedProducts.length > 0) {
+        botHtml += '<div style="margin-top:10px; display:flex; flex-direction:column; gap:8px;">';
+        data.recommendedProducts.forEach(p => {
+            botHtml += `
+                <div style="background:#FFFFFF; border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:8px 10px; display:flex; justify-content:space-between; align-items:center; gap:8px; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+                    <div style="display:flex; align-items:center; gap:8px; min-width:0;">
+                        <img src="${p.imageUrl}" alt="${p.name}" style="width:36px; height:36px; object-fit:cover; border-radius:4px; flex-shrink:0;" onerror="this.style.display='none'">
+                        <div style="min-width:0;">
+                            <strong style="font-size:0.82rem; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:var(--text-primary);">${p.name}</strong>
+                            <span style="color:var(--accent-emerald); font-weight:700; font-size:0.8rem;">₹${Number(p.price).toLocaleString('en-IN')}</span>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="padding:4px 10px; font-size:0.75rem; flex-shrink:0;" onclick="addToCart(${p.id})">+ Add</button>
+                </div>
+            `;
+        });
+        botHtml += '</div>';
+    }
+
+    botMsgEl.innerHTML = botHtml;
+    chatContainer.appendChild(botMsgEl);
+
+    // Update suggestions if provided
+    if (data.suggestions && data.suggestions.length > 0) {
+        const suggBox = document.querySelector('.chat-suggestions');
+        if (suggBox) {
+            suggBox.innerHTML = data.suggestions.map(s => `
+                <button class="chat-chip" onclick="sendChatPrompt('${s.replace(/'/g, "\\'")}')">${s}</button>
+            `).join('');
+        }
+    }
+
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+async function handleChatSubmit(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const input = document.getElementById('chat-input');
+    const chatContainer = document.getElementById('chat-messages');
+    if (!input || !chatContainer) return;
+
+    const userText = input.value.trim();
+    if (!userText) return;
+
+    // Append user message
+    const userMsgEl = document.createElement('div');
+    userMsgEl.className = 'chat-msg user';
+    userMsgEl.textContent = userText;
+    chatContainer.appendChild(userMsgEl);
+    input.value = '';
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+
+    // Typing indicator
+    const typingEl = document.createElement('div');
+    typingEl.className = 'chat-msg bot';
+    typingEl.id = 'chat-typing-indicator';
+    typingEl.innerHTML = '<em>IndiraBot is typing...</em>';
+    chatContainer.appendChild(typingEl);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+
+    // Helper to query backend endpoint
+    async function queryBackend(url) {
+        const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                message: userText,
+                userEmail: state.user ? (state.user.email || '') : ''
+            })
+        });
+        if (!res.ok) throw new Error('Status ' + res.status);
+        return await res.json();
+    }
+
+    try {
+        let data = null;
+        try {
+            data = await queryBackend('/api/chat');
+        } catch (localErr) {
+            // If running on a different port like Live Server (e.g. 5500), try localhost:8080
+            if (window.location.port && window.location.port !== '8080') {
+                data = await queryBackend('http://localhost:8080/api/chat');
+            } else {
+                throw localErr;
+            }
+        }
+
+        typingEl.remove();
+        renderBotMessage(chatContainer, data);
+    } catch (err) {
+        console.warn('Backend /api/chat unreachable, running IndiraBot local AI engine:', err);
+        typingEl.remove();
+        const fallbackData = generateOfflineBotResponse(userText);
+        renderBotMessage(chatContainer, fallbackData);
+    }
+
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
